@@ -18,6 +18,17 @@ function HolyStats_OnUpdate(self, elapsed)
 	end
 end
 
+function HolyStats_getRegenMp()
+	local meditation = { 0.05, 0.10, 0.15 }
+	local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 8)
+	if name == 'Meditation' and currentRank > 0
+	then
+		return meditation[currentRank]
+	else
+		return 0
+	end
+end
+
 function HolyStats_update()
 	local base, casting = GetManaRegen()
 	local delay
@@ -28,7 +39,7 @@ function HolyStats_update()
 	else
 		delay = "+5s"
 	end
-	casting = 0.15 * regen
+	casting = HolyStats_getRegenMp() * regen
 	local bonusHealing = GetSpellBonusHealing()
 	local maxmana = UnitPowerMax("player" , 0)
 	local mana = UnitPower("player" , 0);

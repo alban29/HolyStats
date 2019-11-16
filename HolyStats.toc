@@ -2,5 +2,5 @@
 ## Title: HolyStats
 ## Notes: MP5 and Healing Bonus stats
 ## Author: Czupak
-## Version 0.3
+## Version 0.4
 HolyStats.xml
