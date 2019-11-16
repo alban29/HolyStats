@@ -1,0 +1,6 @@
+## Interface: 11302
+## Title: HolyStats
+## Notes: MP5 and Healing Bonus stats
+## Author: Czupak
+## Version 0.3
+HolyStats.xml
