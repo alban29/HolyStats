@@ -1,6 +1,7 @@
 local prefix = "|cffffa500MP5|cff1784d1Regen|r: "
 local regen
 local delay
+local isSpellsFrame = false
 
 function HolyStats_OnLoad(self)
 	HolyStatsBG:SetVertexColor(0.2, 0.2, 0.2)
@@ -10,11 +11,19 @@ function HolyStats_OnLoad(self)
 end
 
 function HolyStats_OnUpdate(self, elapsed)
+	if not delay
+	then
+		delay = 0
+	end
 	delay = elapsed + delay
 	if(delay > 1)
 	then
 		delay = 0
 		HolyStats_update()
+		if isSpellsFrame
+		then
+			getHealingSpells()
+		end
 	end
 end
 
@@ -88,9 +97,27 @@ function HolyStats_OnMouseDown(self, button)
 	elseif button == "RightButton" then
 		self:StartSizing()
 		self.isSizing = true
+		return
+	elseif button == "MiddleButton" then
+		if isSpellsFrame
+		then
+			hideSpellsFrame()
+		else
+			showSpellsFrame()
 		end
+	end
 end
 
 function HolyStats_OnMouseUp(self, button)
 	self:StopMovingOrSizing()
+end
+
+function showSpellsFrame()
+	isSpellsFrame = true
+	SpellsFrame:Show()
+end
+
+function hideSpellsFrame()
+	isSpellsFrame = false
+	SpellsFrame:Hide()
 end

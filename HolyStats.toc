@@ -4,3 +4,4 @@
 ## Author: Czupak
 ## Version 0.4
 HolyStats.xml
+SpellsFrame.xml

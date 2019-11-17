@@ -1,0 +1,93 @@
+<Ui>
+	<Script file="SpellsFrame.lua"/>
+
+	<Frame name="SpellsFrame" parent="UIParent" movable="true" resizable="true" frameStrata="LOW" toplevel="true" hidden="true">
+		<Size>
+			<AbsDimension x="100" y="100"/>
+		</Size>
+		<Backdrop bgFile="Interface\Buttons\WHITE8X8" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="4" right="4" top="4" bottom="4"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-50"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="SpellsFrameBG">
+					<Color r="0.5" g="0.5" b="1.0"/>
+					<Size>
+						<AbsDimension x="100" y="100"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+                <FontString name="SpellsFrameText" inherits="GameFontNormal">
+                    <Shadow>
+                        <Color a="0.5" r="0" g="0" b="1"/>
+                        <Offset x="1" y="-1"/>
+                    </Shadow>
+                    <Size>
+                        <AbsDimension x="100" y="100"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                        </Anchor>
+                        <Anchor point="BOTTOMRIGHT">
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="15"/>
+                    </FontHeight>
+                    <Color r="0.8" g="0.8" b="0.8"/>
+                </FontString>
+				<Scripts>
+					<OnMouseDown>
+
+					</OnMouseDown>
+					<OnMouseUp>
+
+					</OnMouseUp>
+				</Scripts>
+			</Layer>
+		</Layers>
+        <Frames>
+            <Button name="MyAddon_Button">tttttttttttttttt</Button>
+            <Button name="MyAddon_Button">xxxxxxxxxxxxxxxx</Button>
+        </Frames>
+		<Scripts>
+			<OnLoad>
+                SpellsFrame_OnLoad(self)
+			</OnLoad>
+			<OnUpdate>
+
+			</OnUpdate>
+			<OnEvent>
+
+			</OnEvent>
+			<OnMouseDown>
+                SpellsFrame_OnMouseDown(self, button)
+			</OnMouseDown>
+			<OnMouseUp>
+                SpellsFrame_OnMouseUp(self, button)
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>
