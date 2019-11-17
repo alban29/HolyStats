@@ -51,20 +51,21 @@ function HolyStats_update()
 	local itemRegen = 0
 	for invSlot = 1, 18 do
 		local itemLink = GetInventoryItemLink("player", invSlot);
-		if itemLink == nil
+		if itemLink ~= nil
 		then
-		else
 			local stats = GetItemStats(itemLink)
-				-- print("Item: "..itemLink)
-			for k,v in pairs(stats)
-			do
-				if k == "ITEM_MOD_SPELL_POWER_SHORT"
-				then
-					itemBonus = itemBonus + v + 1
-				end
-				if k == "ITEM_MOD_POWER_REGEN0_SHORT"
-				then
-					itemRegen = itemRegen + v + 1
+			if stats ~= nil
+			then
+				for k,v in pairs(stats)
+				do
+					if k == "ITEM_MOD_SPELL_POWER_SHORT"
+					then
+						itemBonus = itemBonus + v + 1
+					end
+					if k == "ITEM_MOD_POWER_REGEN0_SHORT"
+					then
+						itemRegen = itemRegen + v + 1
+					end
 				end
 			end
 		end
