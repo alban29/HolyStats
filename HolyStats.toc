@@ -2,6 +2,6 @@
 ## Title: HolyStats
 ## Notes: MP5 and Healing Bonus stats
 ## Author: Czupak
-## Version 0.4
+## Version 0.5
 HolyStats.xml
 SpellsFrame.xml
