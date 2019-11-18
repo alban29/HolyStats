@@ -22,7 +22,7 @@ function HolyStats_OnUpdate(self, elapsed)
 		HolyStats_update()
 		if isSpellsFrame
 		then
-			getHealingSpells()
+			SpellsFrame_Update()
 		end
 	end
 end

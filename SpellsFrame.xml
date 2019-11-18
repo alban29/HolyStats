@@ -3,24 +3,13 @@
 
 	<Frame name="SpellsFrame" parent="UIParent" movable="true" resizable="true" frameStrata="LOW" toplevel="true" hidden="true">
 		<Size>
-			<AbsDimension x="100" y="100"/>
+			<AbsDimension x="300" y="500"/>
 		</Size>
-		<Backdrop bgFile="Interface\Buttons\WHITE8X8" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-			<EdgeSize>
-				<AbsValue val="16"/>
-			</EdgeSize>
-			<TileSize>
-				<AbsValue val="16"/>
-			</TileSize>
-			<BackgroundInsets>
-				<AbsInset left="4" right="4" top="4" bottom="4"/>
-			</BackgroundInsets>
-		</Backdrop>
 		<Anchors>
 			<Anchor point="TOP">
-				<Offset>
-					<AbsDimension x="0" y="-50"/>
-				</Offset>
+				<!-- <Offset>
+					<AbsDimension x="20" y="20"/>
+				</Offset> -->
 			</Anchor>
 		</Anchors>
 		<Layers>
@@ -39,25 +28,140 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-                <FontString name="SpellsFrameText" inherits="GameFontNormal">
-                    <Shadow>
-                        <Color a="0.5" r="0" g="0" b="1"/>
-                        <Offset x="1" y="-1"/>
-                    </Shadow>
-                    <Size>
-                        <AbsDimension x="100" y="100"/>
-                    </Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT">
-                        </Anchor>
-                        <Anchor point="BOTTOMRIGHT">
-                        </Anchor>
-                    </Anchors>
-                    <FontHeight>
-                        <AbsValue val="15"/>
-                    </FontHeight>
-                    <Color r="0.8" g="0.8" b="0.8"/>
-                </FontString>
+<!--                    ########################                 -->				
+				<FontString name="$parentTextSpell1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="100"/>
+				</Size>
+				<Color r="0.8" g="0.8" b="0.8"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+					<Offset>
+						<AbsDimension y="-30"/>
+					</Offset>
+					</Anchor>
+				</Anchors>
+				</FontString>
+				<FontString name="$parentTextRank1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="50"/>
+				</Size>
+				<Color r="0.8" g="0.8" b="0.8"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextSpell1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextMin1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextRank1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextMax1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextMin1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextAvg1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Color r="0.2" g="0.8" b="0.4"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextMax1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextMana1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Color r="0.2" g="0.4" b="0.8"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextAvg1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextEff1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextMana1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextHBCoeff1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextEff1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextHB1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextHBCoeff1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
+				<FontString name="$parentTextHBp1" inherits="GameFontNormalSmall">
+				<Size>
+					<AbsDimension x="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTextHB1" relativePoint="TOPRIGHT">
+					<!-- <Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset> -->
+					</Anchor>
+				</Anchors>
+				</FontString>
+
 				<Scripts>
 					<OnMouseDown>
 
@@ -68,10 +172,6 @@
 				</Scripts>
 			</Layer>
 		</Layers>
-        <Frames>
-            <Button name="MyAddon_Button">tttttttttttttttt</Button>
-            <Button name="MyAddon_Button">xxxxxxxxxxxxxxxx</Button>
-        </Frames>
 		<Scripts>
 			<OnLoad>
                 SpellsFrame_OnLoad(self)
