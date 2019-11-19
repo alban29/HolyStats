@@ -2,114 +2,227 @@ local cache = {}
 local healingSpells = {
 	Heal = {
 		['Rank 1'] = {
-			Min = 337,
-			Max = 389,
-			Mana = 132,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 307,
+				Max = 353,
+				Mana = 155,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 2'] = {
-			Min = 489,
-			Max = 558,
-			Mana = 174,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 445,
+				Max = 507,
+				Mana = 205,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 3'] = {
-			Min = 644,
-			Max = 729,
-			Mana = 217,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 586,
+				Max = 662,
+				Mana = 255,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 4'] = {
-			Min = 807,
-			Max = 910,
-			Mana = 259,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 734,
+				Max = 827,
+				Mana = 305,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		}
 	},
 	['Greater Heal'] = {
 		['Rank 1'] = {
-			Min = 1016,
-			Max = 1143,
-			Mana = 314,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 924,
+				Max = 1039,
+				Mana = 370,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 2'] = {
-			Min = 1295,
-			Max = 1450,
-			Mana = 387,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 1178,
+				Max = 1318,
+				Mana = 455,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 3'] = {
-			Min = 1617,
-			Max = 1807,
-			Mana = 463,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 1470,
+				Max = 1642,
+				Mana = 545,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		},
 		['Rank 4'] = {
-			Min = 1994,
-			Max = 2224,
-			Mana = 557,
-			Cast = 2.5,
-			BaseCast = 3
+			org = {
+				Min = 1813,
+				Max = 2021,
+				Mana = 655,
+				Cast = 2.5,
+				BaseCast = 3
+			}
 		}
 	},
 	['Flash Heal'] = {
 		['Rank 1'] = {
-			Min = 222,
-			Max = 272,
-			Mana = 125,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 202,
+				Max = 247,
+				Mana = 125,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 2'] = {
-			Min = 295,
-			Max = 358,
-			Mana = 155,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 269,
+				Max = 325,
+				Mana = 155,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 3'] = {
-			Min = 373,
-			Max = 447,
-			Mana = 185,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 339,
+				Max = 406,
+				Mana = 185,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 4'] = {
-			Min = 455,
-			Max = 542,
-			Mana = 215,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 414,
+				Max = 492,
+				Mana = 215,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 5'] = {
-			Min = 587,
-			Max = 696,
-			Mana = 265,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 534,
+				Max = 633,
+				Mana = 265,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 6'] = {
-			Min = 728,
-			Max = 861,
-			Mana = 315,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 662,
+				Max = 783,
+				Mana = 315,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		},
 		['Rank 7'] = {
-			Min = 911,
-			Max = 1073,
-			Mana = 380,
-			Cast = 1.5,
-			BaseCast = 1.5
+			org = {
+				Min = 828,
+				Max = 975,
+				Mana = 380,
+				Cast = 1.5,
+				BaseCast = 1.5
+			}
 		}
+	},
+	['Renew'] = {
+		['Rank 1'] = {
+			org = {
+				Min = 45,
+				Max = 45,
+				Mana = 30,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 2'] = {
+			org = {
+				Min = 100,
+				Max = 100,
+				Mana = 65,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 3'] = {
+			org = {
+				Min = 175,
+				Max = 175,
+				Mana = 105,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 4'] = {
+			org = {
+				Min = 245,
+				Max = 245,
+				Mana = 140,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 5'] = {
+			org = {
+				Min = 315,
+				Max = 315,
+				Mana = 170,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 6'] = {
+			org = {
+				Min = 400,
+				Max = 400,
+				Mana = 205,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 7'] = {
+			org = {
+				Min = 510,
+				Max = 510,
+				Mana = 250,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 8'] = {
+			org = {
+				Min = 650,
+				Max = 650,
+				Mana = 305,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
+		['Rank 9'] = {
+			org = {
+				Min = 810,
+				Max = 810,
+				Mana = 365,
+				Cast = 0,
+				BaseCast = 15
+			}
+		},
 	}
 }
 
@@ -156,7 +269,6 @@ function SpellsFrame_OnLoad(self)
 		btn:SetWidth(col['width'])
 		offset = offset + col['width']
 	end
-	-- btn:Show()
 end
 
 function SpellsFrame_OnMouseDown(self, button)
@@ -177,14 +289,13 @@ function SpellsFrame_OnMouseUp(self, button)
 end
 
 function SpellsFrame_Update()
+	calculateSpells()
 	local spells = getHealingSpells()
 	local data = getSpells(spells)
 	printData(data)
 end
 
 function getHealingSpells()
-	-- for i=0, 40	do skillType, contextualID = GetSpellBookItemName(i, BOOKTYPE_SPELL); print(skillType); print(contextualID)	end
-	-- print("Spells")
 	local spells = {}
 	local i = 1
 	while true do
@@ -194,7 +305,6 @@ function getHealingSpells()
 			do break end
 		end
 
-
 		if healingSpells[spellName] ~= nil and healingSpells[spellName][spellSubName] ~= nil
 		then
 			if spells[spellName] == nil
@@ -202,7 +312,6 @@ function getHealingSpells()
 				spells[spellName] = {}
 			end
 			spells[spellName][spellSubName] = healingSpells[spellName][spellSubName]
-			-- print(spellName .. '(' .. spellSubName .. ')')
 		end
 		i = i + 1
 	end
@@ -220,6 +329,115 @@ function sortKeys(data)
 	return keys
 end
 
+function calculateSpells()
+	-- Mental Agility - instant casts 2% * 5
+	-- Improved Renew - renew 5% * 3
+	-- Improved Healing - mana cost Lesser Heal, Heal, Greater Heal 5% * 3
+	-- Improved Prayer of Healing - mana cost Prayer of Healing 10% * 2
+	-- Spiritual Guidance - healing by 5% * 5 of Spirit [included in bonus healing]
+	-- Spritual Healing - healing spells 2% * 5
+	local bonus = 0
+	local spellRank = getSpellRank('Spiritual Healing')
+	if spellRank > 0
+	then
+		bonus = 0.02 * spellRank
+	end
+
+	local manaCost = 0
+	spellRank = getSpellRank('Improved Healing')
+	if spellRank > 0
+	then
+		manaCost = 0.05 * spellRank
+	end
+
+	local renew = 0
+	spellRank = getSpellRank('Improved Renew')
+	if spellRank > 0
+	then
+		renew = 0.05 * spellRank
+	end
+
+	local instantMana = 0
+	spellRank = getSpellRank('Mental Agility')
+	if spellRank > 0
+	then
+		instantMana = 0.02 * spellRank
+	end
+
+	local data = healingSpells
+	for spell, ranks in pairs(healingSpells)
+	do
+		for rank, obj in pairs(ranks)
+		do
+			local mana = obj['org']['Mana']
+			if spell == 'Heal' or spell == 'Lesser Heal' or spell == 'Greater Heal'
+			then
+				mana = obj['org']['Mana']*(1-manaCost)
+			end
+
+			local xMin = obj['org']['Min']*(1+bonus)
+			local xMax = obj['org']['Max']*(1+bonus)
+			if spell == 'Renew'
+			then
+				mana = obj['org']['Mana']*(1-instantMana)
+				xMin = obj['org']['Min']*(1+bonus+renew)
+				xMax = obj['org']['Max']*(1+bonus+renew)
+			end
+
+			data[spell][rank] = {
+				Min = obj['org']['Min']*(1+bonus),
+				Max = obj['org']['Max']*(1+bonus),
+				Mana = mana,
+				Cast = obj['org']['Cast'],
+				BaseCast = obj['org']['BaseCast'],
+				org = obj['org']
+			}
+		end
+	end
+
+	healingSpells = data
+end
+	
+
+function getSpellRank(talent)
+	if talent == 'Spiritual Healing'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 15) --Spiritual Healing
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Improved Healing'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 10) --Improved Healing
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Improved Renew'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 2) --Improved Renew
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Mental Agility'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 10) --Mental Agility
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	end
+end
 
 function getSpells(spells)
 	local toFrame = ''
@@ -239,10 +457,15 @@ function getSpells(spells)
 			
 			local bonusHealing = GetSpellBonusHealing()
 			local coeff = meta.BaseCast / 3.5
+			if spell == 'Renew'
+			then
+				coeff = meta.BaseCast / 15
+			end
 			
 			local mMin = meta.Min + bonusHealing * coeff
 			local mMax = meta.Max + bonusHealing * coeff
 			local avgHB = avg + bonusHealing * coeff
+			local mana = math.ceil(meta.Mana)
 			eff = avgHB / meta.Mana
 			hb = (avgHB - avg) * 100 / avgHB
 			hbp = bonusHealing * coeff
@@ -250,7 +473,7 @@ function getSpells(spells)
 			local entry = {
 				['spell'] = spell,
 				['rank'] = rank,
-				['mana'] = meta.Mana,
+				['mana'] = mana,
 				['min'] = mMin,
 				['max'] = mMax,
 				['avg'] = avgHB,
@@ -294,7 +517,7 @@ function printData(data)
 			end
 			if key == 'avg' or key == 'eff' or key == 'hb' or key == 'min' or key == 'max' or key == 'hbcoeff' or key == 'hbp'
 			then
-				entry[key] = math.floor(entry[key])
+				entry[key] = math.floor(entry[key]+0.5)
 			end
 			if key == 'hbp' or key == 'hbcoeff'
 			then

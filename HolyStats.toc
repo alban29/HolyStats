@@ -1,7 +1,7 @@
 ## Interface: 11302
 ## Title: HolyStats
-## Notes: MP5 and Healing Bonus stats
+## Notes: MP5, Healing Bonus and detailed Heling Spells' stats
 ## Author: Czupak
-## Version 0.6
+## Version 0.7
 HolyStats.xml
 SpellsFrame.xml
