@@ -234,6 +234,14 @@ function SpellsFrame_OnLoad(self)
 	self:SetMinResize(20,20)
 	self:SetClampedToScreen(true)
 	local offset = 0
+
+	local btn = CreateFrame("Button", nil, self,"UIPanelButtonTemplate")
+		btn:SetPoint("TOPLEFT", -20, 1)
+		btn:SetScript("OnClick", function()
+			toggleSpellsFrameConfig()
+		end)
+	btn:SetText('?')
+	btn:SetWidth(20)
 	local columns = {
 		{ name = 'spell', width = 100 },
 		{ name = 'rank', width = 50 },
@@ -337,28 +345,28 @@ function calculateSpells()
 	-- Spiritual Guidance - healing by 5% * 5 of Spirit [included in bonus healing]
 	-- Spritual Healing - healing spells 2% * 5
 	local bonus = 0
-	local spellRank = getSpellRank('Spiritual Healing')
+	local spellRank = getTalentRank('Spiritual Healing')
 	if spellRank > 0
 	then
 		bonus = 0.02 * spellRank
 	end
 
 	local manaCost = 0
-	spellRank = getSpellRank('Improved Healing')
+	spellRank = getTalentRank('Improved Healing')
 	if spellRank > 0
 	then
 		manaCost = 0.05 * spellRank
 	end
 
 	local renew = 0
-	spellRank = getSpellRank('Improved Renew')
+	spellRank = getTalentRank('Improved Renew')
 	if spellRank > 0
 	then
 		renew = 0.05 * spellRank
 	end
 
 	local instantMana = 0
-	spellRank = getSpellRank('Mental Agility')
+	spellRank = getTalentRank('Mental Agility')
 	if spellRank > 0
 	then
 		instantMana = 0.02 * spellRank
@@ -399,7 +407,7 @@ function calculateSpells()
 end
 	
 
-function getSpellRank(talent)
+function getTalentRank(talent)
 	if talent == 'Spiritual Healing'
 	then
 		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 15) --Spiritual Healing
@@ -447,47 +455,50 @@ function getSpells(spells)
 	do
 		for a,rank in pairs(sortKeys(spells[spell]))
 		do
-			local meta = spells[spell][rank]
-			-- print(spell .. '(' .. rank .. ')')
-			local avg = (meta.Min + meta.Max) / 2
-			local eff = avg * 100 / meta.Mana
-			local hb = 0
-	
-			-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d]", spell, rank, meta.Min, meta.Max, avg, eff, hb )
-			
-			local bonusHealing = GetSpellBonusHealing()
-			local coeff = meta.BaseCast / 3.5
-			if spell == 'Renew'
+			if not isSpellIgnored(spell, rank)
 			then
-				coeff = meta.BaseCast / 15
+				local meta = spells[spell][rank]
+				-- print(spell .. '(' .. rank .. ')')
+				local avg = (meta.Min + meta.Max) / 2
+				local eff = avg * 100 / meta.Mana
+				local hb = 0
+		
+				-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d]", spell, rank, meta.Min, meta.Max, avg, eff, hb )
+				
+				local bonusHealing = GetSpellBonusHealing()
+				local coeff = meta.BaseCast / 3.5
+				if spell == 'Renew'
+				then
+					coeff = meta.BaseCast / 15
+				end
+				
+				local mMin = meta.Min + bonusHealing * coeff
+				local mMax = meta.Max + bonusHealing * coeff
+				local avgHB = avg + bonusHealing * coeff
+				local mana = math.ceil(meta.Mana)
+				eff = avgHB / meta.Mana
+				hb = (avgHB - avg) * 100 / avgHB
+				hbp = bonusHealing * coeff
+				
+				local entry = {
+					['spell'] = spell,
+					['rank'] = rank,
+					['mana'] = mana,
+					['min'] = mMin,
+					['max'] = mMax,
+					['avg'] = avgHB,
+					['eff'] = eff,
+					['hbcoeff'] = coeff * 100,
+					['hb'] = hbp,
+					['hbp'] = hb
+				}
+				table.insert(data, entry)
+				if cache['maxeff'] < eff
+				then
+					cache['maxeff'] = eff
+				end
+				-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d][HB: %d%%]", spell, rank, mMin, mMax, avgHB, eff, hb ) 
 			end
-			
-			local mMin = meta.Min + bonusHealing * coeff
-			local mMax = meta.Max + bonusHealing * coeff
-			local avgHB = avg + bonusHealing * coeff
-			local mana = math.ceil(meta.Mana)
-			eff = avgHB / meta.Mana
-			hb = (avgHB - avg) * 100 / avgHB
-			hbp = bonusHealing * coeff
-			
-			local entry = {
-				['spell'] = spell,
-				['rank'] = rank,
-				['mana'] = mana,
-				['min'] = mMin,
-				['max'] = mMax,
-				['avg'] = avgHB,
-				['eff'] = eff,
-				['hbcoeff'] = coeff * 100,
-				['hb'] = hbp,
-				['hbp'] = hb
-			}
-			table.insert(data, entry)
-			if cache['maxeff'] < eff
-			then
-				cache['maxeff'] = eff
-			end
-			-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d][HB: %d%%]", spell, rank, mMin, mMax, avgHB, eff, hb ) 
 		end
 	end
 
@@ -559,3 +570,4 @@ function sortData(data)
 
 	return data
 end
+

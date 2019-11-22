@@ -69,9 +69,6 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnLoad>
-				HolyStats_OnLoad(self)
-			</OnLoad>
 			<OnUpdate>
 				HolyStats_OnUpdate(self, elapsed)
 			</OnUpdate>

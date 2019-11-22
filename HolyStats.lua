@@ -3,7 +3,29 @@ local regen
 local delay
 local isSpellsFrame = false
 
+local frame = CreateFrame("FRAME")
+frame:RegisterEvent("ADDON_LOADED")
+-- frame:RegisterEvent("PLAYER_LOGOUT")
+
+function frame:OnEvent(event, arg1)
+	-- print("Event")
+	-- print(event)
+	-- print(arg1)
+	if event == "ADDON_LOADED" -- and arg1 == 'HolyStats'
+	then
+		-- print("HSLoaded")
+		if myIgnoredSpells == nil
+		then
+			myIgnoredSpells = {}
+		end
+		HolyStats_OnLoad(HolyStats)
+		SpellsFrameConfig_OnLoad(SpellsFrameConfig)
+	end
+end
+frame:SetScript("OnEvent", frame.OnEvent);
+
 function HolyStats_OnLoad(self)
+	-- print('HolyStats Loaded')
 	HolyStatsBG:SetVertexColor(0.2, 0.2, 0.2)
 	HolyStatsFrame:SetMinResize(20,20)
 	HolyStatsFrame:SetClampedToScreen(true)
