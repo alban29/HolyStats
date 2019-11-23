@@ -406,47 +406,6 @@ function calculateSpells()
 	healingSpells = data
 end
 	
-
-function getTalentRank(talent)
-	if talent == 'Spiritual Healing'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 15) --Spiritual Healing
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Improved Healing'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 10) --Improved Healing
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Improved Renew'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 2) --Improved Renew
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Mental Agility'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 10) --Mental Agility
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	end
-end
-
 function getSpells(spells)
 	local toFrame = ''
 	local data = {}
@@ -514,14 +473,15 @@ function printData(data)
 	-- local toFrame = ''
 	local keys = {'spell', 'rank', 'mana', 'min', 'max', 'avg', 'eff', 'hbcoeff', 'hb', 'hbp'}
 	local col = {}
+	for _,key in pairs(keys)
+	do
+		col[key] = {}
+	end
+	
 	for i, entry in pairs(data)
 	do
 		for _,key in pairs(keys)
 		do
-			if col[key] == nil
-			then
-				col[key] = {}
-			end
 			if key == 'eff'
 			then
 				entry[key] = entry[key] * 100 / cache['maxeff']

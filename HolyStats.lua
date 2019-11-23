@@ -50,14 +50,8 @@ function HolyStats_OnUpdate(self, elapsed)
 end
 
 function HolyStats_getRegenMp()
-	local meditation = { 0.05, 0.10, 0.15 }
-	local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 8)
-	if name == 'Meditation' and currentRank > 0
-	then
-		return meditation[currentRank]
-	else
-		return 0
-	end
+	local meditation = { 0, 0.05, 0.10, 0.15 }
+	return meditation[getTalentRank('Meditation')]
 end
 
 function HolyStats_update()
@@ -77,6 +71,7 @@ function HolyStats_update()
 	local full = maxmana/regen
 	local fullin = (maxmana-mana)/regen
 	local percent = 100*mana/maxmana
+	local crit = GetSpellCritChance() + getTalentRank('Holy Specialization')
 
 	local itemBonus = 0
 	local itemRegen = 0
@@ -107,10 +102,11 @@ function HolyStats_update()
 MP5: %.1f
 MP5wC: %.1f
 HealBonus: %d
+Crit: %.2f%%
 
 ItemMP5wC: %.1f
 ItemHealBonus: %d]]
-	HolyStatsText:SetText(string.format( tmpl, percent, fullin, delay, regen*5, itemRegen + casting*5, bonusHealing, itemRegen, itemBonus))
+	HolyStatsText:SetText(string.format( tmpl, percent, fullin, delay, regen*5, itemRegen + casting*5, bonusHealing, crit, itemRegen, itemBonus))
 end
 
 function HolyStats_OnMouseDown(self, button)
@@ -143,4 +139,65 @@ end
 function hideSpellsFrame()
 	isSpellsFrame = false
 	SpellsFrame:Hide()
+end
+
+
+
+function getTalentRank(talent)
+	if talent == 'Spiritual Healing'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 15) --Spiritual Healing
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Improved Healing'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 10) --Improved Healing
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Improved Renew'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 2) --Improved Renew
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Mental Agility'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 10) --Mental Agility
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Holy Specialization'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 3) --Holy Specialization
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	elseif talent == 'Meditation'
+	then
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 8) --Meditation
+		if name == talent and currentRank > 0
+		then
+			return currentRank
+		else
+			return 0
+		end
+	end
+	return 0
 end
