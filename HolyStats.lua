@@ -8,12 +8,8 @@ frame:RegisterEvent("ADDON_LOADED")
 -- frame:RegisterEvent("PLAYER_LOGOUT")
 
 function frame:OnEvent(event, arg1)
-	-- print("Event")
-	-- print(event)
-	-- print(arg1)
 	if event == "ADDON_LOADED" -- and arg1 == 'HolyStats'
 	then
-		-- print("HSLoaded")
 		if myIgnoredSpells == nil
 		then
 			myIgnoredSpells = {}
@@ -25,7 +21,6 @@ end
 frame:SetScript("OnEvent", frame.OnEvent);
 
 function HolyStats_OnLoad(self)
-	-- print('HolyStats Loaded')
 	HolyStatsBG:SetVertexColor(0.2, 0.2, 0.2)
 	HolyStatsFrame:SetMinResize(20,20)
 	HolyStatsFrame:SetClampedToScreen(true)
@@ -51,7 +46,7 @@ end
 
 function HolyStats_getRegenMp()
 	local meditation = { 0, 0.05, 0.10, 0.15 }
-	return meditation[getTalentRank('Meditation')]
+	return meditation[getTalentRank('Meditation')+1]
 end
 
 function HolyStats_update()
@@ -146,60 +141,24 @@ end
 
 
 function getTalentRank(talent)
-	if talent == 'Spiritual Healing'
+	local talents = {
+		['Spiritual Healing'] = {2,15},
+		['Improved Healing'] = {2,10},
+		['Improved Renew'] = {2,2},
+		['Mental Agility'] = {1,10},
+		['Holy Specialization'] = {2,3},
+		['Meditation'] = {1,8},
+		['Improved Prayer of Healing'] = {2,12}
+	}
+
+	if talents[talent] ~= nil 
 	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 15) --Spiritual Healing
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo( talents[talent][1], talents[talent][2])
 		if name == talent and currentRank > 0
 		then
 			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Improved Healing'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 10) --Improved Healing
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Improved Renew'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 2) --Improved Renew
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Mental Agility'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 10) --Mental Agility
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Holy Specialization'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(2, 3) --Holy Specialization
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
-		end
-	elseif talent == 'Meditation'
-	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo(1, 8) --Meditation
-		if name == talent and currentRank > 0
-		then
-			return currentRank
-		else
-			return 0
 		end
 	end
+	
 	return 0
 end

@@ -247,6 +247,19 @@ local healingSpells = {
 				lvl = 56
 			}
 		},
+	},
+	['Prayer of Healing'] = {
+		['Rank 4'] = {
+			org = {
+				Min = 939,
+				Max = 991,
+				Mana = 1030,
+				Cast = 3,
+				BaseCast = 3,
+				lvl = 60,
+				targets = 5
+			}
+		}
 	}
 }
 
@@ -406,6 +419,10 @@ function calculateSpells()
 			then
 				mana = obj['org']['Mana']*(1-manaCost)
 			end
+			if spell == 'Prayer of Healing'
+			then
+				mana = obj['org']['Mana'] * (1 - getTalentRank('Improved Prayer of Healing') * 0.1)
+			end
 
 			local xMin = obj['org']['Min']*(1+bonus)
 			local xMax = obj['org']['Max']*(1+bonus)
@@ -416,6 +433,11 @@ function calculateSpells()
 				xMax = obj['org']['Max']*(1+bonus+renew)
 			end
 
+			local tg = 1
+			if obj['org']['targets'] ~= nil
+			then
+				tg = obj['org']['targets']
+			end
 			data[spell][rank] = {
 				Min = obj['org']['Min']*(1+bonus),
 				Max = obj['org']['Max']*(1+bonus),
@@ -423,6 +445,7 @@ function calculateSpells()
 				Cast = obj['org']['Cast'],
 				BaseCast = obj['org']['BaseCast'],
 				lvl = obj['org']['lvl'],
+				targets = tg,
 				org = obj['org']
 			}
 		end
@@ -442,15 +465,20 @@ function getSpells(spells)
 			if not isSpellIgnored(spell, rank)
 			then
 				local meta = spells[spell][rank]
-				-- print(spell .. '(' .. rank .. ')')
-				local avg = (meta.Min + meta.Max) / 2
-				local eff = avg * 100 / meta.Mana
 				local hb = 0
 				local bonusHealing = GetSpellBonusHealing()
 				local coeff = meta.BaseCast / 3.5
 				if spell == 'Renew'
 				then
 					coeff = meta.BaseCast / 15
+				end
+				local targets = ''
+				if spell == 'Prayer of Healing'
+				then
+					coeff = coeff / 3
+					meta.Min = meta.Min * meta.targets
+					meta.Max = meta.Max * meta.targets
+					targets = ' (x' .. tostring(meta.targets) .. ')'
 				end
 				local lvlPenality = 1
 				if meta.lvl < 20
@@ -459,16 +487,18 @@ function getSpells(spells)
 				end
 				coeff = coeff * lvlPenality
 				
+				local avg = (meta.Min + meta.Max) / 2
 				local mMin = meta.Min + bonusHealing * coeff
 				local mMax = meta.Max + bonusHealing * coeff
 				local avgHB = avg + bonusHealing * coeff
 				local mana = math.ceil(meta.Mana)
-				eff = avgHB / meta.Mana
+				-- local eff = avg * 100 / meta.Mana
+				local eff = avgHB / meta.Mana
 				hb = (avgHB - avg) * 100 / avgHB
 				hbp = bonusHealing * coeff
 				
 				local entry = {
-					['spell'] = spell,
+					['spell'] = spell .. targets,
 					['rank'] = rank,
 					['mana'] = mana,
 					['min'] = mMin,
