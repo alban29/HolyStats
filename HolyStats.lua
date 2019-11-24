@@ -87,10 +87,12 @@ function HolyStats_update()
 					if k == "ITEM_MOD_SPELL_POWER_SHORT"
 					then
 						itemBonus = itemBonus + v + 1
-					end
-					if k == "ITEM_MOD_POWER_REGEN0_SHORT"
+					elseif k == "ITEM_MOD_POWER_REGEN0_SHORT"
 					then
 						itemRegen = itemRegen + v + 1
+					elseif k == "ITEM_MOD_CRIT_SPELL_RATING_SHORT"
+					then
+						crit = crit + v + 1
 					end
 				end
 			end

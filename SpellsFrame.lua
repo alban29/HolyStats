@@ -7,7 +7,8 @@ local healingSpells = {
 				Max = 353,
 				Mana = 155,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 16
 			}
 		},
 		['Rank 2'] = {
@@ -16,7 +17,8 @@ local healingSpells = {
 				Max = 507,
 				Mana = 205,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 28
 			}
 		},
 		['Rank 3'] = {
@@ -25,7 +27,8 @@ local healingSpells = {
 				Max = 662,
 				Mana = 255,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 28
 			}
 		},
 		['Rank 4'] = {
@@ -34,7 +37,8 @@ local healingSpells = {
 				Max = 827,
 				Mana = 305,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 34
 			}
 		}
 	},
@@ -45,7 +49,8 @@ local healingSpells = {
 				Max = 1039,
 				Mana = 370,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 40
 			}
 		},
 		['Rank 2'] = {
@@ -54,7 +59,8 @@ local healingSpells = {
 				Max = 1318,
 				Mana = 455,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 46
 			}
 		},
 		['Rank 3'] = {
@@ -63,7 +69,8 @@ local healingSpells = {
 				Max = 1642,
 				Mana = 545,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 52
 			}
 		},
 		['Rank 4'] = {
@@ -72,7 +79,8 @@ local healingSpells = {
 				Max = 2021,
 				Mana = 655,
 				Cast = 2.5,
-				BaseCast = 3
+				BaseCast = 3,
+				lvl = 58
 			}
 		}
 	},
@@ -83,7 +91,8 @@ local healingSpells = {
 				Max = 247,
 				Mana = 125,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 20
 			}
 		},
 		['Rank 2'] = {
@@ -92,7 +101,8 @@ local healingSpells = {
 				Max = 325,
 				Mana = 155,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 26
 			}
 		},
 		['Rank 3'] = {
@@ -101,7 +111,8 @@ local healingSpells = {
 				Max = 406,
 				Mana = 185,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 32
 			}
 		},
 		['Rank 4'] = {
@@ -110,7 +121,8 @@ local healingSpells = {
 				Max = 492,
 				Mana = 215,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 38
 			}
 		},
 		['Rank 5'] = {
@@ -119,7 +131,8 @@ local healingSpells = {
 				Max = 633,
 				Mana = 265,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 44
 			}
 		},
 		['Rank 6'] = {
@@ -128,7 +141,8 @@ local healingSpells = {
 				Max = 783,
 				Mana = 315,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 50
 			}
 		},
 		['Rank 7'] = {
@@ -137,7 +151,8 @@ local healingSpells = {
 				Max = 975,
 				Mana = 380,
 				Cast = 1.5,
-				BaseCast = 1.5
+				BaseCast = 1.5,
+				lvl = 56
 			}
 		}
 	},
@@ -148,7 +163,8 @@ local healingSpells = {
 				Max = 45,
 				Mana = 30,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 8
 			}
 		},
 		['Rank 2'] = {
@@ -157,7 +173,8 @@ local healingSpells = {
 				Max = 100,
 				Mana = 65,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 14
 			}
 		},
 		['Rank 3'] = {
@@ -166,7 +183,8 @@ local healingSpells = {
 				Max = 175,
 				Mana = 105,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 20
 			}
 		},
 		['Rank 4'] = {
@@ -175,7 +193,8 @@ local healingSpells = {
 				Max = 245,
 				Mana = 140,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 26
 			}
 		},
 		['Rank 5'] = {
@@ -184,7 +203,8 @@ local healingSpells = {
 				Max = 315,
 				Mana = 170,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 32
 			}
 		},
 		['Rank 6'] = {
@@ -193,7 +213,8 @@ local healingSpells = {
 				Max = 400,
 				Mana = 205,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 38
 			}
 		},
 		['Rank 7'] = {
@@ -202,7 +223,8 @@ local healingSpells = {
 				Max = 510,
 				Mana = 250,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 44
 			}
 		},
 		['Rank 8'] = {
@@ -211,7 +233,8 @@ local healingSpells = {
 				Max = 650,
 				Mana = 305,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 50
 			}
 		},
 		['Rank 9'] = {
@@ -220,7 +243,8 @@ local healingSpells = {
 				Max = 810,
 				Mana = 365,
 				Cast = 0,
-				BaseCast = 15
+				BaseCast = 15,
+				lvl = 56
 			}
 		},
 	}
@@ -398,6 +422,7 @@ function calculateSpells()
 				Mana = mana,
 				Cast = obj['org']['Cast'],
 				BaseCast = obj['org']['BaseCast'],
+				lvl = obj['org']['lvl'],
 				org = obj['org']
 			}
 		end
@@ -421,15 +446,18 @@ function getSpells(spells)
 				local avg = (meta.Min + meta.Max) / 2
 				local eff = avg * 100 / meta.Mana
 				local hb = 0
-		
-				-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d]", spell, rank, meta.Min, meta.Max, avg, eff, hb )
-				
 				local bonusHealing = GetSpellBonusHealing()
 				local coeff = meta.BaseCast / 3.5
 				if spell == 'Renew'
 				then
 					coeff = meta.BaseCast / 15
 				end
+				local lvlPenality = 1
+				if meta.lvl < 20
+				then
+					lvlPenality = 1 - ((20 - meta.lvl) * 0.0375)
+				end
+				coeff = coeff * lvlPenality
 				
 				local mMin = meta.Min + bonusHealing * coeff
 				local mMax = meta.Max + bonusHealing * coeff
@@ -456,7 +484,6 @@ function getSpells(spells)
 				then
 					cache['maxeff'] = eff
 				end
-				-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d][HB: %d%%]", spell, rank, mMin, mMax, avgHB, eff, hb ) 
 			end
 		end
 	end
@@ -465,12 +492,10 @@ function getSpells(spells)
 	then
 		data = sortData(data)
 	end
-	-- SpellsFrameText:SetText(toFrame)
 	return data
 end
 
 function printData(data)
-	-- local toFrame = ''
 	local keys = {'spell', 'rank', 'mana', 'min', 'max', 'avg', 'eff', 'hbcoeff', 'hb', 'hbp'}
 	local col = {}
 	for _,key in pairs(keys)
@@ -496,18 +521,7 @@ function printData(data)
 			end
 			table.insert(col[key], entry[key])
 		end
-
-		-- toFrame = toFrame .. "\n" .. string.format("%s (%s): [Min: %d][Max:%d][Avg: %d][Eff: %d][HB: %d%%]", entry['spell'], entry['rank'], entry['min'], entry['max'], entry['avg'], entry['eff'], entry['hb'] ) 
-		-- do break end
 	end
-	-- SpellsFrameHSpell:SetText( 'Spell' )
-	-- SpellsFrameHRank:SetText('Rank')
-	-- SpellsFrameHMin:SetText('Min')
-	-- SpellsFrameHMax:SetText('Max')
-	-- SpellsFrameHAvg:SetText('Avg')
-	-- SpellsFrameHEff:SetText('Eff')
-	-- SpellsFrameHHB:SetText('HB')
-
 	SpellsFrameTextSpell1:SetText( table.concat(col['spell'], "\n"))
 	SpellsFrameTextRank1:SetText(table.concat(col['rank'], "\n"))
 	SpellsFrameTextMana1:SetText(table.concat(col['mana'], "\n"))
@@ -521,13 +535,25 @@ function printData(data)
 end
 
 function sortData(data)
-	if sortOrder == 1
-	then
-		table.sort( data, function( a,b ) return a[sortBy] > b[sortBy] end )
-	else
-		table.sort( data, function( a,b ) return a[sortBy] < b[sortBy] end )
-	end
+	table.sort( data, sortFunction )
 
 	return data
 end
 
+function sortFunction(a, b)
+	if (a[sortBy] == b[sortBy]) and (a['spell'] == b['spell'])
+	then
+		if sortOrder == 1
+		then 
+			return a['rank'] < b['rank']
+		else
+			return a['rank'] > b['rank']
+		end
+	end
+	if sortOrder == 1
+	then
+		return a[sortBy] < b[sortBy]
+	else
+		return a[sortBy] > b[sortBy]
+	end
+end
