@@ -100,19 +100,27 @@ function SpellsFrameConfig_Fill(self)
 			label:SetText(spell)
 			offsetX = offsetX + label:GetWidth()
 
-			ranks = spells[spell]
-			for _,rank in pairs(sortKeys(ranks))
+			local ranks = {}
+			for i=1, 10
 			do
-				local btn = CreateFrame("CheckButton", spell .. rank, self ,"UICheckButtonTemplate")
-				btn:SetPoint("TOPLEFT", offsetX + 15, offsetY)
-				btn:SetScript("OnClick", function(self)
-					local lSpell = spell
-					local lRank = rank
-					toggleSpellIgnore(spell, rank)
-				end)
-				btn:SetChecked(not isSpellIgnored(spell, rank))
-				btn:SetWidth(20)
-				btn:SetHeight(20)
+				table.insert(ranks, 'Rank ' ..  tostring(i))
+			end
+
+			for _,rank in pairs(ranks)
+			do
+				if spells[spell][rank] ~= nil
+				then
+					local btn = CreateFrame("CheckButton", spell .. rank, self ,"UICheckButtonTemplate")
+					btn:SetPoint("TOPLEFT", offsetX + 15, offsetY)
+					btn:SetScript("OnClick", function(self)
+						local lSpell = spell
+						local lRank = rank
+						toggleSpellIgnore(spell, rank)
+					end)
+					btn:SetChecked(not isSpellIgnored(spell, rank))
+					btn:SetWidth(20)
+					btn:SetHeight(20)
+				end
 				offsetX = offsetX + 50
 			end
 			offsetX = 0
