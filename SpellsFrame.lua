@@ -349,6 +349,8 @@ function getHealingSpells()
 		then
 			do break end
 		end
+		spellName = en(spellName)
+		spellSubName = en(spellSubName)
 
 		if healingSpells[spellName] ~= nil and healingSpells[spellName][spellSubName] ~= nil
 		then
