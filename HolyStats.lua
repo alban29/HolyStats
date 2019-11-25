@@ -154,7 +154,7 @@ function getTalentRank(talent)
 	if talents[talent] ~= nil 
 	then
 		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo( talents[talent][1], talents[talent][2])
-		if name == talent and currentRank > 0
+		if en(name) == talent and currentRank > 0
 		then
 			return currentRank
 		end
