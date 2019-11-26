@@ -73,12 +73,15 @@ local offsetY = 0
 local frameLoaded = false
 function SpellsFrameConfig_Fill(self)
 	local spells = getHealingSpells()
-	local offsetX = 70
-	self:SetWidth( 10 * 50 + 70)
+	local wSpellName = 110
+	local height = 20
+	local offsetX = wSpellName
+	local numRanks = 9
+	self:SetWidth( numRanks * 50 + wSpellName)
 	SpellsFrameConfigBG:SetVertexColor(0.1, 0.3, 0.3)
 	if not frameLoaded
 	then
-		for i=1, 10
+		for i=1, numRanks
 		do
 			local label = self:CreateFontString(tostring(i) .. '1', 'OVERLAY' ,"GameFontNormal")
 			label:SetPoint("TOPLEFT", offsetX, offsetY)
@@ -89,19 +92,19 @@ function SpellsFrameConfig_Fill(self)
 			offsetX = offsetX + label:GetWidth()
 		end
 		offsetX = 0
-		offsetY = offsetY - 30
+		offsetY = offsetY - height
 	
 		for _,spell in pairs(sortKeys(spells))
 		do
 			local label = self:CreateFontString(tostring(i) .. '1', 'OVERLAY' ,"GameFontNormal")
 			label:SetPoint("TOPLEFT", offsetX, offsetY)
-			label:SetWidth(70)
+			label:SetWidth(wSpellName)
 			label:SetHeight(20)
 			label:SetText(spell)
 			offsetX = offsetX + label:GetWidth()
 
 			local ranks = {}
-			for i=1, 10
+			for i=1, numRanks
 			do
 				table.insert(ranks, 'Rank ' ..  tostring(i))
 			end
@@ -124,9 +127,9 @@ function SpellsFrameConfig_Fill(self)
 				offsetX = offsetX + 50
 			end
 			offsetX = 0
-			offsetY = offsetY - 30
+			offsetY = offsetY - height
 		end
     end
-    self:SetHeight( offsetY * -1)
+    self:SetHeight( offsetY * -1 + 5)
 	frameLoaded = true
 end

@@ -249,6 +249,39 @@ local healingSpells = {
 		},
 	},
 	['Prayer of Healing'] = {
+		['Rank 1'] = {
+			org = {
+				Min = 312,
+				Max = 333,
+				Mana = 410,
+				Cast = 3,
+				BaseCast = 3,
+				lvl = 60,
+				targets = 5
+			}
+		},
+		['Rank 2'] = {
+			org = {
+				Min = 458,
+				Max = 487,
+				Mana = 560,
+				Cast = 3,
+				BaseCast = 3,
+				lvl = 60,
+				targets = 5
+			}
+		},
+		['Rank 3'] = {
+			org = {
+				Min = 675,
+				Max = 713,
+				Mana = 770,
+				Cast = 3,
+				BaseCast = 3,
+				lvl = 60,
+				targets = 5
+			}
+		},
 		['Rank 4'] = {
 			org = {
 				Min = 939,
@@ -259,7 +292,7 @@ local healingSpells = {
 				lvl = 60,
 				targets = 5
 			}
-		}
+		},
 	}
 }
 
@@ -280,7 +313,7 @@ function SpellsFrame_OnLoad(self)
 	btn:SetText('?')
 	btn:SetWidth(20)
 	local columns = {
-		{ name = 'spell', width = 100 },
+		{ name = 'spell', width = 110 },
 		{ name = 'rank', width = 50 },
 		{ name = 'min', width = 40 },
 		{ name = 'max', width = 40 },
@@ -291,6 +324,7 @@ function SpellsFrame_OnLoad(self)
 		{ name = 'hb', width = 40 },
 		{ name = 'hbp', width = 40 }
 	}
+	SpellsFrameTextSpell1:SetWidth(columns[1]['width'])
 	for _,col in pairs(columns)
 	do
 		local btn = CreateFrame("Button", nil, self,"UIPanelButtonTemplate")
@@ -435,7 +469,7 @@ function calculateSpells()
 				xMax = obj['org']['Max']*(1+bonus+renew)
 			end
 
-			local tg = 1
+			local tg = nil
 			if obj['org']['targets'] ~= nil
 			then
 				tg = obj['org']['targets']
@@ -474,13 +508,9 @@ function getSpells(spells)
 				then
 					coeff = meta.BaseCast / 15
 				end
-				local targets = ''
 				if spell == 'Prayer of Healing'
 				then
 					coeff = coeff / 3
-					meta.Min = meta.Min * meta.targets
-					meta.Max = meta.Max * meta.targets
-					targets = ' (x' .. tostring(meta.targets) .. ')'
 				end
 				local lvlPenality = 1
 				if meta.lvl < 20
@@ -488,33 +518,48 @@ function getSpells(spells)
 					lvlPenality = 1 - ((20 - meta.lvl) * 0.0375)
 				end
 				coeff = coeff * lvlPenality
-				
-				local avg = (meta.Min + meta.Max) / 2
-				local mMin = meta.Min + bonusHealing * coeff
-				local mMax = meta.Max + bonusHealing * coeff
-				local avgHB = avg + bonusHealing * coeff
 				local mana = math.ceil(meta.Mana)
-				-- local eff = avg * 100 / meta.Mana
-				local eff = avgHB / meta.Mana
-				hb = (avgHB - avg) * 100 / avgHB
 				hbp = bonusHealing * coeff
 				
-				local entry = {
-					['spell'] = spell .. targets,
-					['rank'] = rank,
-					['mana'] = mana,
-					['min'] = mMin,
-					['max'] = mMax,
-					['avg'] = avgHB,
-					['eff'] = eff,
-					['hbcoeff'] = coeff * 100,
-					['hb'] = hbp,
-					['hbp'] = hb
-				}
-				table.insert(data, entry)
-				if cache['maxeff'] < eff
+				local loopTargets = 1
+				if meta.targets ~= nil
 				then
-					cache['maxeff'] = eff
+					loopTargets = meta.targets
+				end 
+				for tarNum = 1, loopTargets
+				do
+					local targets = ''
+					local cMin = meta.Min * tarNum
+					local cMax = meta.Max * tarNum
+					if meta.targets ~=nil
+					then
+						targets = ' (x' .. tostring(tarNum) .. ')'
+					end
+
+					local avg = (cMin + cMax) / 2
+					local mMin = cMin + bonusHealing * coeff
+					local mMax = cMax + bonusHealing * coeff
+					local avgHB = avg + bonusHealing * coeff
+					local eff = avgHB / meta.Mana
+					hb = (avgHB - avg) * 100 / avgHB
+					
+					local entry = {
+						['spell'] = spell .. targets,
+						['rank'] = rank,
+						['mana'] = mana,
+						['min'] = mMin,
+						['max'] = mMax,
+						['avg'] = avgHB,
+						['eff'] = eff,
+						['hbcoeff'] = coeff * 100,
+						['hb'] = hbp,
+						['hbp'] = hb
+					}
+					table.insert(data, entry)
+					if cache['maxeff'] < eff
+					then
+						cache['maxeff'] = eff
+					end
 				end
 			end
 		end
@@ -554,6 +599,7 @@ function printData(data)
 			table.insert(col[key], entry[key])
 		end
 	end
+
 	SpellsFrameTextSpell1:SetText( table.concat(col['spell'], "\n"))
 	SpellsFrameTextRank1:SetText(table.concat(col['rank'], "\n"))
 	SpellsFrameTextMana1:SetText(table.concat(col['mana'], "\n"))
@@ -564,6 +610,11 @@ function printData(data)
 	SpellsFrameTextHBCoeff1:SetText(table.concat(col['hbcoeff'], "\n"))
 	SpellsFrameTextHB1:SetText(table.concat(col['hb'], "\n"))
 	SpellsFrameTextHBp1:SetText(table.concat(col['hbp'], "\n"))
+
+	-- SpellsFrameBG:SetWidth( 8 * 40 + 160 )
+	-- print('W: ' .. tostring(8 * 40 + 160))
+	-- print('H: ' .. tostring(SpellsFrameTextSpell1:GetHeight()))
+	-- SpellsFrameBG:SetHeight(SpellsFrameTextSpell1:GetHeight()+40)
 end
 
 function sortData(data)
