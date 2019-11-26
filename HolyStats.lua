@@ -104,6 +104,12 @@ Crit: %.2f%%
 ItemMP5wC: %.1f
 ItemHealBonus: %d]]
 	HolyStatsText:SetText(string.format( tmpl, percent, fullin, delay, regen*5, itemRegen + casting*5, bonusHealing, crit, itemRegen, itemBonus))
+	-- local ble, Height, Flags = HolyStatsText:GetFont()
+	-- print(ble)
+	-- print(Height)
+	-- print(Flags)
+	-- HolyStatsText:SetFont(ble, 8, Flags)
+
 end
 
 function HolyStats_OnMouseDown(self, button)
