@@ -49,8 +49,6 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
 		return sl
 	end
     
-
-
 	local title = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 	title:SetPoint("TOPLEFT", 16, -16)
 	title:SetText(addonName)
@@ -70,6 +68,10 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
         end)
 	fontSlider:SetPoint("TOPLEFT", fontLabel, "BOTTOMLEFT", 0, -10)
 
+    if config['fontSizeSpell'] == nil
+    then
+        config['fontSizeSpell'] = 10
+    end
     local spellFontLabel = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 	spellFontLabel:SetPoint("TOPLEFT", fontLabel, "BOTTOMLEFT", 0, -30)
 	spellFontLabel:SetText("Spells Font Size")
