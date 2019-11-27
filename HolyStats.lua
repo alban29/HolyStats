@@ -2,6 +2,7 @@ local prefix = "|cffffa500MP5|cff1784d1Regen|r: "
 local regen
 local delay
 local isSpellsFrame = false
+local pauseUpdate = false
 
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("ADDON_LOADED")
@@ -13,6 +14,10 @@ function frame:OnEvent(event, arg1)
 		if myIgnoredSpells == nil
 		then
 			myIgnoredSpells = {}
+		end
+		if config == nil
+		then
+			config = {}
 		end
 		HolyStats_OnLoad(HolyStats)
 		SpellsFrameConfig_OnLoad(SpellsFrameConfig)
@@ -50,6 +55,10 @@ function HolyStats_getRegenMp()
 end
 
 function HolyStats_update()
+	if pauseUpdate
+	then
+		return
+	end
 	local base, casting = GetManaRegen()
 	local delay
 	if math.floor(base) > 0
@@ -104,10 +113,28 @@ Crit: %.2f%%
 ItemMP5wC: %.1f
 ItemHealBonus: %d]]
 	HolyStatsText:SetText(string.format( tmpl, percent, fullin, delay, regen*5, itemRegen + casting*5, bonusHealing, crit, itemRegen, itemBonus))
+
+	local fontName, fontHeight, fontFlags = HolyStatsText:GetFont()
+	if config['fontSize'] == nil
+	then
+		config['fontSize'] = fontHeight
+	end
+	HolyStatsText:SetFont(fontName, config['fontSize'])
+
+	-- local posX, posY = HolyStatsFrame:GetLeft(), HolyStatsFrame:GetTop()
+	-- local width = HolyStatsText:GetStringWidth()
+	-- local height = HolyStatsText:GetStringHeight()
+	-- HolyStatsFrame:SetWidth(width + 20)
+	-- HolyStatsFrame:SetHeight(height + 30)
+	-- print(posX)
+	-- print(posY)
+	-- HolyStatsFrame:ClearAllPoints()
+	-- HolyStatsFrame:SetPoint("TOPLEFT", posX, posY)
 end
 
 function HolyStats_OnMouseDown(self, button)
 	if (button == "LeftButton") then
+		pauseUpdate = true
 		self:StartMoving()
 		return
 	elseif button == "RightButton" then
@@ -126,6 +153,7 @@ end
 
 function HolyStats_OnMouseUp(self, button)
 	self:StopMovingOrSizing()
+	pauseUpdate = false
 end
 
 function showSpellsFrame()

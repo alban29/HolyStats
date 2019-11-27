@@ -1,5 +1,6 @@
 <Ui>
 	<Script file="Babel.lua"/>
+	<Script file="Options.lua"/>
 	<Script file="HolyStats.lua"/>
 
 	<Frame name="HolyStatsFrame" parent="UIParent" movable="true" resizable="true" frameStrata="LOW" toplevel="true" hidden="false">
@@ -18,9 +19,9 @@
 			</BackgroundInsets>
 		</Backdrop>
 		<Anchors>
-			<Anchor point="TOP">
+			<Anchor point="TOPLEFT">
 				<Offset>
-					<AbsDimension x="0" y="-50"/>
+					<AbsDimension x="0" y="0"/>
 				</Offset>
 			</Anchor>
 		</Anchors>

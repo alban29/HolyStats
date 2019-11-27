@@ -611,6 +611,22 @@ function printData(data)
 	SpellsFrameTextHB1:SetText(table.concat(col['hb'], "\n"))
 	SpellsFrameTextHBp1:SetText(table.concat(col['hbp'], "\n"))
 
+	local fontName, fontHeight, fontFlags = SpellsFrameTextSpell1:GetFont()
+	if config['fontSizeSpell'] == nil
+	then
+		config['fontSizeSpell'] = fontHeight
+	end
+
+	SpellsFrameTextSpell1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextRank1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextMana1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextMin1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextMax1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextAvg1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextEff1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextHBCoeff1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextHB1:SetFont(fontName, config['fontSizeSpell'])
+	SpellsFrameTextHBp1:SetFont(fontName, config['fontSizeSpell'])
 	-- SpellsFrameBG:SetWidth( 8 * 40 + 160 )
 	-- print('W: ' .. tostring(8 * 40 + 160))
 	-- print('H: ' .. tostring(SpellsFrameTextSpell1:GetHeight()))
