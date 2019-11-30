@@ -92,7 +92,7 @@ end)
 
 InterfaceOptions_AddCategory(optionsFrame)
 
-SLASH_HOLYSTATS1 = '/hs'
+SLASH_HOLYSTATS1 = '/holystats'
 function SlashCmdList.HOLYSTATS(msg)
 	InterfaceOptionsFrame_OpenToCategory(addonName)
 	InterfaceOptionsFrame_OpenToCategory(addonName)
