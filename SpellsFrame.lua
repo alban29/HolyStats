@@ -1,5 +1,37 @@
 local cache = {}
 local healingSpells = {
+	['Lesser Heal'] = {
+		['Rank 1'] = {
+			org = {
+				Min = 47,
+				Max = 58,
+				Mana = 30,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 1
+			}
+		},
+		['Rank 2'] = {
+			org = {
+				Min = 76,
+				Max = 91,
+				Mana = 45,
+				Cast = 2,
+				BaseCast = 2,
+				lvl = 4
+			}
+		},
+		['Rank 3'] = {
+			org = {
+				Min = 143,
+				Max = 165,
+				Mana = 75,
+				Cast = 2.5,
+				BaseCast = 2.5,
+				lvl = 10
+			}
+		},
+	},
 	Heal = {
 		['Rank 1'] = {
 			org = {
@@ -293,6 +325,74 @@ local healingSpells = {
 				targets = 5
 			}
 		},
+	},
+	['Holy Nova'] = {
+		['Rank 6'] = {
+			org = {
+				Min = 302,
+				Max = 350,
+				Mana = 750,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 60,
+				targets = 5
+			}
+		},
+		['Rank 5'] = {
+			org = {
+				Min = 239,
+				Max = 276,
+				Mana = 635,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 52,
+				targets = 5
+			}
+		},
+		['Rank 4'] = {
+			org = {
+				Min = 165,
+				Max = 192,
+				Mana = 520,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 44,
+				targets = 5
+			}
+		},
+		['Rank 3'] = {
+			org = {
+				Min = 124,
+				Max = 143,
+				Mana = 400,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 36,
+				targets = 5
+			}
+		},
+		['Rank 2'] = {
+			org = {
+				Min = 89,
+				Max = 101,
+				Mana = 290,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 28,
+				targets = 5
+			}
+		},
+		['Rank 1'] = {
+			org = {
+				Min = 54,
+				Max = 63,
+				Mana = 185,
+				Cast = 1.5,
+				BaseCast = 1.5,
+				lvl = 20,
+				targets = 5
+			}
+		},
 	}
 }
 
@@ -459,6 +559,10 @@ function calculateSpells()
 			then
 				mana = obj['org']['Mana'] * (1 - getTalentRank('Improved Prayer of Healing') * 0.1)
 			end
+			if spell == 'Holy Nova'
+			then
+				mana = obj['org']['Mana']*(1-instantMana)
+			end
 
 			local xMin = obj['org']['Min']*(1+bonus)
 			local xMax = obj['org']['Max']*(1+bonus)
@@ -511,6 +615,10 @@ function getSpells(spells)
 				if spell == 'Prayer of Healing'
 				then
 					coeff = coeff / 3
+				end
+				if spell == 'Holy Nova'
+				then
+					coeff = coeff / 3 / 2
 				end
 				local lvlPenality = 1
 				if meta.lvl < 20
