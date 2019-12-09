@@ -171,7 +171,7 @@ end
 
 function getTalentRank(talent)
 	local talents = {
-		['Priest'] = {
+		['PRIEST'] = {
 			['Spiritual Healing'] = {2,15},
 			['Improved Healing'] = {2,10},
 			['Improved Renew'] = {2,2},
@@ -180,7 +180,7 @@ function getTalentRank(talent)
 			['Meditation'] = {1,8},
 			['Improved Prayer of Healing'] = {2,12}
 		},
-		['Paladin'] = {
+		['PALADIN'] = {
 			['Healing Light'] = {1,5},
 			['Illumination'] = {1,9},
 			['Holy Power'] = {1,13}
