@@ -1,403 +1,584 @@
 local cache = {}
 local healingSpells = {
-	['Lesser Heal'] = {
-		['Rank 1'] = {
-			org = {
-				Min = 47,
-				Max = 58,
-				Mana = 30,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 1
+	['Priest'] = {
+		['Lesser Heal'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 47,
+					Max = 58,
+					Mana = 30,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 1
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 76,
+					Max = 91,
+					Mana = 45,
+					Cast = 2,
+					BaseCast = 2,
+					lvl = 4
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 143,
+					Max = 165,
+					Mana = 75,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 10
+				}
+			},
+		},
+		Heal = {
+			['Rank 1'] = {
+				org = {
+					Min = 307,
+					Max = 353,
+					Mana = 155,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 16
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 445,
+					Max = 507,
+					Mana = 205,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 28
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 586,
+					Max = 662,
+					Mana = 255,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 28
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 734,
+					Max = 827,
+					Mana = 305,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 34
+				}
 			}
 		},
-		['Rank 2'] = {
-			org = {
-				Min = 76,
-				Max = 91,
-				Mana = 45,
-				Cast = 2,
-				BaseCast = 2,
-				lvl = 4
+		['Greater Heal'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 924,
+					Max = 1039,
+					Mana = 370,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 40
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 1178,
+					Max = 1318,
+					Mana = 455,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 46
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 1470,
+					Max = 1642,
+					Mana = 545,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 52
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 1813,
+					Max = 2021,
+					Mana = 655,
+					Cast = 2.5,
+					BaseCast = 3,
+					lvl = 58
+				}
 			}
 		},
-		['Rank 3'] = {
-			org = {
-				Min = 143,
-				Max = 165,
-				Mana = 75,
-				Cast = 2.5,
-				BaseCast = 2.5,
-				lvl = 10
+		['Flash Heal'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 202,
+					Max = 247,
+					Mana = 125,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 20
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 269,
+					Max = 325,
+					Mana = 155,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 26
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 339,
+					Max = 406,
+					Mana = 185,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 32
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 414,
+					Max = 492,
+					Mana = 215,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 38
+				}
+			},
+			['Rank 5'] = {
+				org = {
+					Min = 534,
+					Max = 633,
+					Mana = 265,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 44
+				}
+			},
+			['Rank 6'] = {
+				org = {
+					Min = 662,
+					Max = 783,
+					Mana = 315,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 50
+				}
+			},
+			['Rank 7'] = {
+				org = {
+					Min = 828,
+					Max = 975,
+					Mana = 380,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 56
+				}
 			}
 		},
-	},
-	Heal = {
-		['Rank 1'] = {
-			org = {
-				Min = 307,
-				Max = 353,
-				Mana = 155,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 16
-			}
+		['Renew'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 45,
+					Max = 45,
+					Mana = 30,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 8
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 100,
+					Max = 100,
+					Mana = 65,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 14
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 175,
+					Max = 175,
+					Mana = 105,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 20
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 245,
+					Max = 245,
+					Mana = 140,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 26
+				}
+			},
+			['Rank 5'] = {
+				org = {
+					Min = 315,
+					Max = 315,
+					Mana = 170,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 32
+				}
+			},
+			['Rank 6'] = {
+				org = {
+					Min = 400,
+					Max = 400,
+					Mana = 205,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 38
+				}
+			},
+			['Rank 7'] = {
+				org = {
+					Min = 510,
+					Max = 510,
+					Mana = 250,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 44
+				}
+			},
+			['Rank 8'] = {
+				org = {
+					Min = 650,
+					Max = 650,
+					Mana = 305,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 50
+				}
+			},
+			['Rank 9'] = {
+				org = {
+					Min = 810,
+					Max = 810,
+					Mana = 365,
+					Cast = 0,
+					BaseCast = 15,
+					lvl = 56
+				}
+			},
 		},
-		['Rank 2'] = {
-			org = {
-				Min = 445,
-				Max = 507,
-				Mana = 205,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 28
-			}
+		['Prayer of Healing'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 312,
+					Max = 333,
+					Mana = 410,
+					Cast = 3,
+					BaseCast = 3,
+					lvl = 60,
+					targets = 5
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 458,
+					Max = 487,
+					Mana = 560,
+					Cast = 3,
+					BaseCast = 3,
+					lvl = 60,
+					targets = 5
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 675,
+					Max = 713,
+					Mana = 770,
+					Cast = 3,
+					BaseCast = 3,
+					lvl = 60,
+					targets = 5
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 939,
+					Max = 991,
+					Mana = 1030,
+					Cast = 3,
+					BaseCast = 3,
+					lvl = 60,
+					targets = 5
+				}
+			},
 		},
-		['Rank 3'] = {
-			org = {
-				Min = 586,
-				Max = 662,
-				Mana = 255,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 28
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 734,
-				Max = 827,
-				Mana = 305,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 34
-			}
+		['Holy Nova'] = {
+			['Rank 6'] = {
+				org = {
+					Min = 302,
+					Max = 350,
+					Mana = 750,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 60,
+					targets = 5
+				}
+			},
+			['Rank 5'] = {
+				org = {
+					Min = 239,
+					Max = 276,
+					Mana = 635,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 52,
+					targets = 5
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 165,
+					Max = 192,
+					Mana = 520,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 44,
+					targets = 5
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 124,
+					Max = 143,
+					Mana = 400,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 36,
+					targets = 5
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 89,
+					Max = 101,
+					Mana = 290,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 28,
+					targets = 5
+				}
+			},
+			['Rank 1'] = {
+				org = {
+					Min = 54,
+					Max = 63,
+					Mana = 185,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 20,
+					targets = 5
+				}
+			},
 		}
 	},
-	['Greater Heal'] = {
-		['Rank 1'] = {
-			org = {
-				Min = 924,
-				Max = 1039,
-				Mana = 370,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 40
+	['Paladin'] = {
+		['Flash of Light'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 67,
+					Max = 77,
+					Mana = 35,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 20
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 102,
+					Max = 117,
+					Mana = 50,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 26
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 153,
+					Max = 171,
+					Mana = 70,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 34
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 206,
+					Max = 231,
+					Mana = 90,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 42
+				}
+			},
+			['Rank 5'] = {
+				org = {
+					Min = 278,
+					Max = 310,
+					Mana = 115,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 50
+				}
+			},
+			['Rank 6'] = {
+				org = {
+					Min = 348,
+					Max = 389,
+					Mana = 140,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 58
+				}
 			}
 		},
-		['Rank 2'] = {
-			org = {
-				Min = 1178,
-				Max = 1318,
-				Mana = 455,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 46
+		['Holy Shock'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 204,
+					Max = 220,
+					Mana = 225,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 40
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 279,
+					Max = 301,
+					Mana = 275,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 48
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 365,
+					Max = 395,
+					Mana = 325,
+					Cast = 1.5,
+					BaseCast = 1.5,
+					lvl = 56
+				}
 			}
 		},
-		['Rank 3'] = {
-			org = {
-				Min = 1470,
-				Max = 1642,
-				Mana = 545,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 52
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 1813,
-				Max = 2021,
-				Mana = 655,
-				Cast = 2.5,
-				BaseCast = 3,
-				lvl = 58
+		['Holy Light'] = {
+			['Rank 1'] = {
+				org = {
+					Min = 42,
+					Max = 51,
+					Mana = 35,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 1
+				}
+			},
+			['Rank 2'] = {
+				org = {
+					Min = 81,
+					Max = 96,
+					Mana = 60,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 6
+				}
+			},
+			['Rank 3'] = {
+				org = {
+					Min = 167,
+					Max = 196,
+					Mana = 110,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 14
+				}
+			},
+			['Rank 4'] = {
+				org = {
+					Min = 332,
+					Max = 368,
+					Mana = 190,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 22
+				}
+			},
+			['Rank 5'] = {
+				org = {
+					Min = 506,
+					Max = 569,
+					Mana = 275,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 30
+				}
+			},
+			['Rank 6'] = {
+				org = {
+					Min = 717,
+					Max = 799,
+					Mana = 365,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 38
+				}
+			},
+			['Rank 7'] = {
+				org = {
+					Min = 968,
+					Max = 1076,
+					Mana = 465,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 46
+				}
+			},
+			['Rank 8'] = {
+				org = {
+					Min = 1272,
+					Max = 1414,
+					Mana = 580,
+					Cast = 2.5,
+					BaseCast = 2.5,
+					lvl = 54
+				}
 			}
 		}
-	},
-	['Flash Heal'] = {
-		['Rank 1'] = {
-			org = {
-				Min = 202,
-				Max = 247,
-				Mana = 125,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 20
-			}
-		},
-		['Rank 2'] = {
-			org = {
-				Min = 269,
-				Max = 325,
-				Mana = 155,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 26
-			}
-		},
-		['Rank 3'] = {
-			org = {
-				Min = 339,
-				Max = 406,
-				Mana = 185,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 32
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 414,
-				Max = 492,
-				Mana = 215,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 38
-			}
-		},
-		['Rank 5'] = {
-			org = {
-				Min = 534,
-				Max = 633,
-				Mana = 265,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 44
-			}
-		},
-		['Rank 6'] = {
-			org = {
-				Min = 662,
-				Max = 783,
-				Mana = 315,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 50
-			}
-		},
-		['Rank 7'] = {
-			org = {
-				Min = 828,
-				Max = 975,
-				Mana = 380,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 56
-			}
-		}
-	},
-	['Renew'] = {
-		['Rank 1'] = {
-			org = {
-				Min = 45,
-				Max = 45,
-				Mana = 30,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 8
-			}
-		},
-		['Rank 2'] = {
-			org = {
-				Min = 100,
-				Max = 100,
-				Mana = 65,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 14
-			}
-		},
-		['Rank 3'] = {
-			org = {
-				Min = 175,
-				Max = 175,
-				Mana = 105,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 20
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 245,
-				Max = 245,
-				Mana = 140,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 26
-			}
-		},
-		['Rank 5'] = {
-			org = {
-				Min = 315,
-				Max = 315,
-				Mana = 170,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 32
-			}
-		},
-		['Rank 6'] = {
-			org = {
-				Min = 400,
-				Max = 400,
-				Mana = 205,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 38
-			}
-		},
-		['Rank 7'] = {
-			org = {
-				Min = 510,
-				Max = 510,
-				Mana = 250,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 44
-			}
-		},
-		['Rank 8'] = {
-			org = {
-				Min = 650,
-				Max = 650,
-				Mana = 305,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 50
-			}
-		},
-		['Rank 9'] = {
-			org = {
-				Min = 810,
-				Max = 810,
-				Mana = 365,
-				Cast = 0,
-				BaseCast = 15,
-				lvl = 56
-			}
-		},
-	},
-	['Prayer of Healing'] = {
-		['Rank 1'] = {
-			org = {
-				Min = 312,
-				Max = 333,
-				Mana = 410,
-				Cast = 3,
-				BaseCast = 3,
-				lvl = 60,
-				targets = 5
-			}
-		},
-		['Rank 2'] = {
-			org = {
-				Min = 458,
-				Max = 487,
-				Mana = 560,
-				Cast = 3,
-				BaseCast = 3,
-				lvl = 60,
-				targets = 5
-			}
-		},
-		['Rank 3'] = {
-			org = {
-				Min = 675,
-				Max = 713,
-				Mana = 770,
-				Cast = 3,
-				BaseCast = 3,
-				lvl = 60,
-				targets = 5
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 939,
-				Max = 991,
-				Mana = 1030,
-				Cast = 3,
-				BaseCast = 3,
-				lvl = 60,
-				targets = 5
-			}
-		},
-	},
-	['Holy Nova'] = {
-		['Rank 6'] = {
-			org = {
-				Min = 302,
-				Max = 350,
-				Mana = 750,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 60,
-				targets = 5
-			}
-		},
-		['Rank 5'] = {
-			org = {
-				Min = 239,
-				Max = 276,
-				Mana = 635,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 52,
-				targets = 5
-			}
-		},
-		['Rank 4'] = {
-			org = {
-				Min = 165,
-				Max = 192,
-				Mana = 520,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 44,
-				targets = 5
-			}
-		},
-		['Rank 3'] = {
-			org = {
-				Min = 124,
-				Max = 143,
-				Mana = 400,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 36,
-				targets = 5
-			}
-		},
-		['Rank 2'] = {
-			org = {
-				Min = 89,
-				Max = 101,
-				Mana = 290,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 28,
-				targets = 5
-			}
-		},
-		['Rank 1'] = {
-			org = {
-				Min = 54,
-				Max = 63,
-				Mana = 185,
-				Cast = 1.5,
-				BaseCast = 1.5,
-				lvl = 20,
-				targets = 5
-			}
-		},
 	}
 }
 
 local sortBy = 'eff'
 local sortOrder = 1
+local class = UnitClass("player")
 
 function SpellsFrame_OnLoad(self)
 	SpellsFrameBG:SetVertexColor(0.2, 0.2, 0.2)
@@ -474,6 +655,8 @@ function SpellsFrame_Update()
 	printData(data)
 end
 
+activeSpells = {}
+
 function getHealingSpells()
 	local spells = {}
 	local i = 1
@@ -486,19 +669,19 @@ function getHealingSpells()
 		spellName = en(spellName)
 		spellSubName = en(spellSubName)
 
-		if healingSpells[spellName] ~= nil and healingSpells[spellName][spellSubName] ~= nil
+		if healingSpells[class][spellName] ~= nil and healingSpells[class][spellName][spellSubName] ~= nil
 		then
 			if spells[spellName] == nil
 			then
 				spells[spellName] = {}
 			end
-			spells[spellName][spellSubName] = healingSpells[spellName][spellSubName]
+			spells[spellName][spellSubName] = healingSpells[class][spellName][spellSubName]
 		end
 		i = i + 1
 	end
 	return spells
 end
-
+	
 function sortKeys(data)
 	local keys = {}
 	for k in pairs(data)
@@ -524,6 +707,12 @@ function calculateSpells()
 		bonus = 0.02 * spellRank
 	end
 
+	local spellRank = getTalentRank('Healing Light')
+	if spellRank > 0
+	then
+		bonus = 0.04 * spellRank
+	end
+
 	local manaCost = 0
 	spellRank = getTalentRank('Improved Healing')
 	if spellRank > 0
@@ -546,7 +735,7 @@ function calculateSpells()
 	end
 
 	local data = healingSpells
-	for spell, ranks in pairs(healingSpells)
+	for spell, ranks in pairs(healingSpells[class])
 	do
 		for rank, obj in pairs(ranks)
 		do
@@ -564,8 +753,14 @@ function calculateSpells()
 				mana = obj['org']['Mana']*(1-instantMana)
 			end
 
-			local xMin = obj['org']['Min']*(1+bonus)
-			local xMax = obj['org']['Max']*(1+bonus)
+			local xMin = obj['org']['Min']
+			local xMax = obj['org']['Max']
+			if spell ~= 'Holy Shock'
+			then
+				xMin = xMin*(1+bonus)
+				xMax = xMax*(1+bonus)
+			end
+
 			if spell == 'Renew'
 			then
 				mana = obj['org']['Mana']*(1-instantMana)
@@ -578,9 +773,9 @@ function calculateSpells()
 			then
 				tg = obj['org']['targets']
 			end
-			data[spell][rank] = {
-				Min = obj['org']['Min']*(1+bonus),
-				Max = obj['org']['Max']*(1+bonus),
+			data[class][spell][rank] = {
+				Min = xMin,
+				Max = xMax,
 				Mana = mana,
 				Cast = obj['org']['Cast'],
 				BaseCast = obj['org']['BaseCast'],
