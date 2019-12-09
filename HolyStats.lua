@@ -3,7 +3,7 @@ local regen
 local delay
 local isSpellsFrame = false
 local pauseUpdate = false
-local class = UnitClass("player");
+local _, class = UnitClass("player");
 
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("ADDON_LOADED")
