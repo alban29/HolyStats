@@ -52,12 +52,39 @@ local strings = {
         ['Rank 8'] = 'Rank 8',
         ['Rank 9'] = 'Rank 9',
         ['Rank 10'] = 'Rank 10',
-    }
+    },
+    ['zhCN'] = {
+        -- Talents
+        ['Spiritual Healing'] = '精神治疗',
+        ['Improved Healing'] = '强化治疗术',
+        ['Improved Renew'] = '强化恢复',
+        ['Mental Agility'] = '精神敏锐',
+        ['Holy Specialization'] = '神圣专精',
+        ['Meditation'] = '冥想',
+        ['Improved Prayer of Healing'] = '强化治疗祷言',
+        -- Skills
+        ['Heal'] = '治疗术',
+        ['Greater Heal'] = '强效治疗术',
+        ['Prayer of Healing'] = '治疗祷言',
+        ['Renew'] = '恢复',
+        ['Flash Heal'] = '快速治疗',
+        ['Lesser Heal'] = '次级治疗术',
+        ['Rank 1'] = '(等级 1)',
+        ['Rank 2'] = '(等级 2)',
+        ['Rank 3'] = '(等级 3)',
+        ['Rank 4'] = '(等级 4)',
+        ['Rank 5'] = '(等级 5)',
+        ['Rank 6'] = '(等级 6)',
+        ['Rank 7'] = '(等级 7)',
+        ['Rank 8'] = '(等级 8)',
+        ['Rank 9'] = '(等级 9)',
+        ['Rank 10'] = '(等级 10)',
+    },
 }
 
 function b(s)
     local lang = 'enUS'
-    if GetLocale() == 'deDE'
+    if strings[GetLocale()] ~= nil
     then
         lang = GetLocale()
     end
