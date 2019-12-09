@@ -7,7 +7,7 @@ local strings = {
         ['Mental Agility'] = 'Mentale Beweglichkeit',
         ['Holy Specialization'] = 'Macht des Glaubens',
         ['Meditation'] = 'Meditation',
-        ['Improved Prayer of Healing'] = 'Verbesserte Gebet der Heilung',
+        ['Improved Prayer of Healing'] = 'Verbessertes Gebet der Heilung',
         -- Skills
         ['Heal'] = 'Heilen',
         ['Greater Heal'] = 'Große Heilung',
