@@ -3,6 +3,7 @@ local regen
 local delay
 local isSpellsFrame = false
 local pauseUpdate = false
+local class = UnitClass("player");
 
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("ADDON_LOADED")
@@ -75,7 +76,7 @@ function HolyStats_update()
 	local full = maxmana/regen
 	local fullin = (maxmana-mana)/regen
 	local percent = 100*mana/maxmana
-	local crit = GetSpellCritChance() + getTalentRank('Holy Specialization')
+	local crit = GetSpellCritChance() + (getTalentRank('Holy Specialization') or 0) + (getTalentRank('Holy Power') or 0)
 
 	local itemBonus = 0
 	local itemRegen = 0
@@ -170,18 +171,25 @@ end
 
 function getTalentRank(talent)
 	local talents = {
-		['Spiritual Healing'] = {2,15},
-		['Improved Healing'] = {2,10},
-		['Improved Renew'] = {2,2},
-		['Mental Agility'] = {1,10},
-		['Holy Specialization'] = {2,3},
-		['Meditation'] = {1,8},
-		['Improved Prayer of Healing'] = {2,12}
+		['Priest'] = {
+			['Spiritual Healing'] = {2,15},
+			['Improved Healing'] = {2,10},
+			['Improved Renew'] = {2,2},
+			['Mental Agility'] = {1,10},
+			['Holy Specialization'] = {2,3},
+			['Meditation'] = {1,8},
+			['Improved Prayer of Healing'] = {2,12}
+		},
+		['Paladin'] = {
+			['Healing Light'] = {1,5},
+			['Illumination'] = {1,9},
+			['Holy Power'] = {1,13}
+		}
 	}
 
-	if talents[talent] ~= nil 
+	if talents[class][talent] ~= nil 
 	then
-		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo( talents[talent][1], talents[talent][2])
+		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo( talents[class][talent][1], talents[class][talent][2])
 		if en(name) == talent and currentRank > 0
 		then
 			return currentRank
