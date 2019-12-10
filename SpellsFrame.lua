@@ -1,6 +1,6 @@
 local cache = {}
 local healingSpells = {
-	['Priest'] = {
+	['PRIEST'] = {
 		['Lesser Heal'] = {
 			['Rank 1'] = {
 				org = {
@@ -396,7 +396,7 @@ local healingSpells = {
 			},
 		}
 	},
-	['Paladin'] = {
+	['PALADIN'] = {
 		['Flash of Light'] = {
 			['Rank 1'] = {
 				org = {
@@ -578,7 +578,7 @@ local healingSpells = {
 
 local sortBy = 'eff'
 local sortOrder = 1
-local class = UnitClass("player")
+local _, class = UnitClass("player")
 
 function SpellsFrame_OnLoad(self)
 	SpellsFrameBG:SetVertexColor(0.2, 0.2, 0.2)
