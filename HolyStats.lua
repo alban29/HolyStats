@@ -76,7 +76,7 @@ function HolyStats_update()
 	local full = maxmana/regen
 	local fullin = (maxmana-mana)/regen
 	local percent = 100*mana/maxmana
-	local crit = GetSpellCritChance() + (getTalentRank('Holy Specialization') or 0) + (getTalentRank('Holy Power') or 0)
+	local crit = GetSpellCritChance() + getTalentRank('Holy Specialization')
 
 	local itemBonus = 0
 	local itemRegen = 0
