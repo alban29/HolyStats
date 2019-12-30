@@ -87,6 +87,14 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
         end)
     spellsFontSlider:SetPoint("TOPLEFT", spellFontLabel, "BOTTOMLEFT", 0, -10)
 
+    local resetButton = CreateFrame("Button", "ResetButtonFrame", optionsFrame, "UIPanelButtonTemplate")
+	resetButton:SetPoint("TOPLEFT", spellsFontSlider, "BOTTOMLEFT", 0, -8)
+	resetButton:SetScript("OnClick", function()
+		resetPosition()
+	end)
+	resetButton:SetText('Reset window size and position')
+	resetButton:SetWidth(170)
+
     optionsFrame:SetScript("OnShow", nil)
 end)
 
@@ -96,4 +104,11 @@ SLASH_HOLYSTATS1 = '/holystats'
 function SlashCmdList.HOLYSTATS(msg)
 	InterfaceOptionsFrame_OpenToCategory(addonName)
 	InterfaceOptionsFrame_OpenToCategory(addonName)
+end
+
+function resetPosition()
+    HolyStatsFrame:SetSize(150,180)
+    HolyStatsFrame:SetPoint("TOPLEFT",UIParent,"CENTER",-50,50)
+    SpellsFrame:SetPoint("TOPLEFT",UIParent,"CENTER",-50,50)
+    SpellsFrameConfig:SetPoint("TOPLEFT",UIParent,"CENTER",-50,50)
 end
