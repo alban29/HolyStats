@@ -2,7 +2,7 @@
 ## Title: HolyStats
 ## Notes: MP5, Healing Bonus and detailed Heling Spells' stats for Priests and Paladins
 ## Author: Czupak
-## Version: 1.1.4
+## Version: 1.2.0
 ## SavedVariablesPerCharacter: myIgnoredSpells config
 HolyStats.xml
 SpellsFrame.xml

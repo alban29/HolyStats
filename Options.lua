@@ -95,6 +95,37 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
 	resetButton:SetText('Reset window size and position')
 	resetButton:SetWidth(170)
 
+    fontLabel = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+	fontLabel:SetPoint("TOPLEFT", resetButton, "BOTTOMLEFT", -2, -16)
+    fontLabel:SetText("Simulate talents")
+    
+    local dropdown = CreateFrame("Frame", "Simulate", optionsFrame, "UIDropDownMenuTemplate")
+	dropdown:SetPoint("TOPLEFT", fontLabel, "BOTTOMLEFT", 0, -8)
+	dropdown.initialize = function()
+		local dd = {}
+			dd.text = 'Improved Renew'
+			dd.value = 'Improved Renew'
+			dd.func = function(self)
+				toggleTalentSim(self.value)
+				self.checked = isTalentSim(self.value)
+				-- CCDIgnoredString:SetText(getIgnoredString())
+			end
+            dd.checked = isTalentSim(dd.text)
+            UIDropDownMenu_AddButton(dd)
+		-- for _, entry in pairs(sortHash(cache['crafts']))
+		-- do
+		-- 	dd.text = entry['name']
+		-- 	dd.value = entry['name']
+		-- 	dd.func = function(self)
+		-- 		toggleIgnoreCooldown(self.value)
+		-- 		self.checked = isCooldownIgnored(self.value)
+		-- 		CCDIgnoredString:SetText(getIgnoredString())
+		-- 	end
+		-- end
+	end
+
+
+
     optionsFrame:SetScript("OnShow", nil)
 end)
 

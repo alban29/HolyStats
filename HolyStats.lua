@@ -20,6 +20,10 @@ function frame:OnEvent(event, arg1)
 		then
 			config = {}
 		end
+		if config['sim'] == null
+		then
+			config['sim'] = {}
+		end
 		HolyStats_OnLoad(HolyStats)
 		SpellsFrameConfig_OnLoad(SpellsFrameConfig)
 	end
@@ -189,6 +193,11 @@ function getTalentRank(talent)
 
 	if talents[class][talent] ~= nil 
 	then
+		if isTalentSim(talent)
+		then
+			return 3
+		end
+
 		local name, iconPath, tier, column, currentRank, maxRank, isExceptional, meetsPrereq = GetTalentInfo( talents[class][talent][1], talents[class][talent][2])
 		if en(name) == talent and currentRank > 0
 		then
@@ -197,4 +206,24 @@ function getTalentRank(talent)
 	end
 	
 	return 0
+end
+
+function toggleTalentSim(talent)
+	if isTalentSim(talent)
+	then
+		config['sim'][talent] = false
+	else
+		config['sim'][talent] = true
+	end
+end
+
+function isTalentSim(talent)
+	local r = false
+	if config['sim'][talent] == nil or config['sim'][talent] == false
+	then
+		r = false
+	else
+		r = true
+	end
+	return r
 end
