@@ -99,6 +99,7 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
 	fontLabel:SetPoint("TOPLEFT", resetButton, "BOTTOMLEFT", -2, -16)
     fontLabel:SetText("Simulate talents")
     
+    -- Simulate
     local dropdown = CreateFrame("Frame", "Simulate", optionsFrame, "UIDropDownMenuTemplate")
 	dropdown:SetPoint("TOPLEFT", fontLabel, "BOTTOMLEFT", 0, -8)
 	dropdown.initialize = function()
@@ -107,11 +108,22 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
 			dd.value = 'Improved Renew'
 			dd.func = function(self)
 				toggleTalentSim(self.value)
-				self.checked = isTalentSim(self.value)
-				-- CCDIgnoredString:SetText(getIgnoredString())
+                self.checked = isTalentSim(self.value)
+                if(isTalentSim(self.value))
+                then
+                    SimulateTalentList:SetText(self.value)
+                else
+                    SimulateTalentList:SetText('')
+                end
 			end
             dd.checked = isTalentSim(dd.text)
-            UIDropDownMenu_AddButton(dd)
+            if(isTalentSim('Improved Renew'))
+            then
+                SimulateTalentList:SetText('Improved Renew')
+            else
+                SimulateTalentList:SetText('')
+            end
+        UIDropDownMenu_AddButton(dd)
 		-- for _, entry in pairs(sortHash(cache['crafts']))
 		-- do
 		-- 	dd.text = entry['name']
@@ -124,6 +136,58 @@ optionsFrame:SetScript("OnShow", function(optionsFrame)
 		-- end
 	end
 
+    local list = optionsFrame:CreateFontString('SimulateTalentList', "ARTWORK", "GameFontNormalSmall")
+    list:SetPoint("TOPLEFT", dropdown, "BOTTOMLEFT", 8, -8)
+    list:SetTextColor(1,1,1)
+	if(isTalentSim('Improved Renew'))
+    then
+        list:SetText('Improved Renew')
+    else
+        list:SetText('')
+    end
+	list:SetJustifyH("LEFT")
+
+    -- Efficiency
+    fontLabel = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+	fontLabel:SetPoint("TOPLEFT", list, "BOTTOMLEFT", -10, -16)
+    fontLabel:SetText("Efficiency calculation based on [=100%]")
+
+    dropdown = CreateFrame("Frame", "EffSpell", optionsFrame, "UIDropDownMenuTemplate")
+	dropdown:SetPoint("TOPLEFT", fontLabel, "BOTTOMLEFT", 0, -8)
+	dropdown.initialize = function()
+		local dd = {}
+            -- dd.checked = isTalentSim(dd.text)
+        spells = getHealingSpells()
+        for a,spell in pairs(sortKeys(spells))
+        do
+            for a,rank in pairs(sortKeys(spells[spell]))
+            do
+                dd.text = spell .. ' (' .. rank .. ')'
+                dd.value = spell .. ' (' .. rank .. ')'
+                dd.rank = rank
+                dd.func = function(self)
+                    setEffSpell(self.value)
+                    -- self.checked = isCooldownIgnored(self.value)
+                    if getEffSpell()
+                    then
+                        EfficiencyList:SetText(getEffSpell())
+                    end
+                end
+                UIDropDownMenu_AddButton(dd)
+            end
+		end
+	end
+
+    local list = optionsFrame:CreateFontString('EfficiencyList', "ARTWORK", "GameFontNormalSmall")
+    list:SetPoint("TOPLEFT", dropdown, "BOTTOMLEFT", 8, -8)
+    list:SetTextColor(1,1,1)
+	if(getEffSpell())
+    then
+        list:SetText(getEffSpell())
+    else
+        list:SetText('')
+    end
+	list:SetJustifyH("LEFT")
 
 
     optionsFrame:SetScript("OnShow", nil)

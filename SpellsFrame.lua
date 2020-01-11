@@ -788,7 +788,16 @@ function calculateSpells()
 
 	healingSpells = data
 end
-	
+
+function setEffSpell(spell)
+	-- print("Set eff spell to [" .. spell .. "]")
+	config['effSpell'] = spell
+end
+
+function getEffSpell()
+	return config['effSpell']
+end
+
 function getSpells(spells)
 	local toFrame = ''
 	local data = {}
@@ -797,6 +806,30 @@ function getSpells(spells)
 	do
 		for a,rank in pairs(sortKeys(spells[spell]))
 		do
+			if config['effSpell'] ~= nil and config['effSpell'] == spell .. ' (' ..rank .. ')'
+			then
+				-- FIXME
+				local meta = spells[spell][rank]
+
+				local coeff = meta.BaseCast / 3.5
+				if spell == 'Renew'
+				then
+					coeff = meta.BaseCast / 15
+				end
+				if spell == 'Holy Nova'
+				then
+					coeff = coeff / 3 / 2
+				end
+				local bonusHealing = GetSpellBonusHealing()
+				local cMin = meta.Min
+				local cMax = meta.Max
+				local avg = (cMin + cMax) / 2
+				local avgHB = avg + bonusHealing * coeff
+				local eff = avgHB / meta.Mana
+				cache['maxeff'] = eff
+			end
+
+
 			if not isSpellIgnored(spell, rank)
 			then
 				local meta = spells[spell][rank]
@@ -859,7 +892,7 @@ function getSpells(spells)
 						['hbp'] = hb
 					}
 					table.insert(data, entry)
-					if cache['maxeff'] < eff
+					if cache['maxeff'] < eff and config['effSpell'] == nil -- and config['effSpell'] == spell .. ' (' ..rank .. ')'
 					then
 						cache['maxeff'] = eff
 					end
@@ -889,9 +922,11 @@ function printData(data)
 		do
 			if key == 'eff'
 			then
-				entry[key] = entry[key] * 100 / cache['maxeff']
+				entry[key] = entry[key] * 1000 / cache['maxeff']
+				entry[key] = math.floor(entry[key]+0.5)
+				entry[key] = entry[key] / 10
 			end
-			if key == 'avg' or key == 'eff' or key == 'hb' or key == 'min' or key == 'max' or key == 'hbcoeff' or key == 'hbp'
+			if key == 'avg' or key == 'hb' or key == 'min' or key == 'max' or key == 'hbcoeff' or key == 'hbp'
 			then
 				entry[key] = math.floor(entry[key]+0.5)
 			end
