@@ -64,6 +64,39 @@ local strings = {
         ['Rank 8'] = 'Rank 8',
         ['Rank 9'] = 'Rank 9',
         ['Rank 10'] = 'Rank 10',
+    },
+    	['frFR'] = {
+        -- Talents
+        ['Spiritual Healing'] = 'Soins spirituels',
+        ['Improved Healing'] = 'Soin amélioré',
+        ['Improved Renew'] = 'Rénovation améliorée',
+        ['Mental Agility'] = 'Sagacité',
+        ['Holy Specialization'] = 'Spécialisation (Sacré)',
+        ['Meditation'] = 'Méditation',
+        ['Improved Prayer of Healing'] = 'Prière de soins améliorée',
+        ['Healing Light'] = 'Lumière guérisseuse',
+        ['Holy Power'] = 'Puissance sacré',
+        ['Illumination'] = 'Illumination',
+        -- Skills
+        ['Heal'] = 'Soins',
+        ['Greater Heal'] = 'Soins supérieurs',
+        ['Prayer of Healing'] = 'Pière de soins',
+        ['Renew'] = 'Rénovation',
+        ['Flash Heal'] = 'Soins rapides',
+        ['Lesser Heal'] = 'Soins inférieurs',
+        ['Flash of Light'] = 'Eclair lumineux',
+        ['Holy Light'] = 'Lumière sacrée',
+        ['Holy Shock'] = 'Horion sacré',
+        ['Rank 1'] = 'Rang 1',
+        ['Rank 2'] = 'Rang 2',
+        ['Rank 3'] = 'Rang 3',
+        ['Rank 4'] = 'Rang 4',
+        ['Rank 5'] = 'Rang 5',
+        ['Rank 6'] = 'Rang 6',
+        ['Rank 7'] = 'Rang 7',
+        ['Rank 8'] = 'Rang 8',
+        ['Rank 9'] = 'Rang 9',
+        ['Rank 10'] = 'Rang 10',
     }
 }
 
@@ -73,6 +106,10 @@ function b(s)
     then
         lang = GetLocale()
     end
+    if GetLocale() == 'frFR'
+    then
+        lang = GetLocale()
+    end	
     if lang == 'enUS'
     then
         return s
@@ -95,6 +132,10 @@ function en(s)
     then
         lang = GetLocale()
     end
+    if GetLocale() == 'frFR'
+    then
+        lang = GetLocale()
+    end	    
     if lang == 'enUS'
     then
         return s
